@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wik-tp4-deployment
+  labels:
+    app: wik-tp4
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: wik-tp4
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 50%
+  template:
+    metadata:
+      labels:
+        app: wik-tp4
+    spec:
+      containers:
+        - name: wik-tp4
+          image: registry.cluster.wik.cloud/public/echo
+          ports:
+            - containerPort: 80
+          env:
+            - name: PING_LISTEN_PORT
+              value: "80"
