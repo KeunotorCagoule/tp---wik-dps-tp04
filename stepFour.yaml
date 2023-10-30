@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: wik-tp4-service
+  labels:
+    app: wik-tp4
+spec:
+  selector:
+    app: wik-tp4
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
